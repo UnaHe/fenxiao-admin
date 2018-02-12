@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AlimamaOrder;
 use App\Orderlist;
 use App\Services\AlimamaOrderService;
 use Illuminate\Http\Request;
@@ -18,7 +19,10 @@ class AlimamaOrderController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Request $request){
-        return view("admin.order.index");
+        $orderStates = AlimamaOrder::$ORDERSTATE;
+        return view("admin.order.index", [
+            'orderStates' => $orderStates
+        ]);
     }
 
     /**
@@ -31,6 +35,20 @@ class AlimamaOrderController extends Controller
         return Response::json($data);
     }
 
+    /**
+     * 订单详情
+     * @param Request $request
+     * @return mixed
+     */
+    public function detail(Request $request){
+        $orderId = $request->get('order_id');
+        if(!$orderId){
+            return $this->ajaxError("参数错误");
+        }
+
+        $data = (new AlimamaOrderService())->detail($orderId);
+        return $this->ajaxSuccess($data);
+    }
 
 
     /**

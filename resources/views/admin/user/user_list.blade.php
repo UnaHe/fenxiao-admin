@@ -25,12 +25,33 @@
             <form id="form">
                 <div class="">
                     <div class="row col-sm-12">
-                        <label class="pull-left">手机号：</label>
+                        <label class="pull-left name">手机号</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control input-sm" name="mobile">
                         </div>
 
-                        <label class="pull-left">用户等级：</label>
+                        <label class="pull-left name">注册时间</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm select-time" name="reg_time_start">
+                        </div>
+                        <label class="pull-left">至</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm select-time" name="reg_time_end">
+                        </div>
+                    </div>
+
+                    <div class="row col-sm-12" style="margin-top: 10px;">
+                        <label class="pull-left name">PID</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm" name="pid">
+                        </div>
+
+                        <label class="pull-left name">邀请码</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control input-sm" name="invite_code">
+                        </div>
+
+                        <label class="pull-left name">用户等级</label>
                         <div class="col-sm-1">
                             <select class="form-control state"  name="grade">
                                 <option value="">不限</option>
@@ -38,27 +59,6 @@
                                 <option value="<?=$grade['grade']?>"><?=$grade['grade_name']?></option>
                                 <?php endforeach;?>
                             </select>
-                        </div>
-
-                        <label class="pull-left">注册时间：</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control input-sm select-time" name="reg_time_start">
-                        </div>
-                        <label class="pull-left">至：</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control input-sm select-time" name="reg_time_end">
-                        </div>
-                    </div>
-
-                    <div class="row col-sm-12">
-                        <label class="pull-left">PID：</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control input-sm" name="pid">
-                        </div>
-
-                        <label class="pull-left">邀请码：</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control input-sm" name="invite_code">
                         </div>
 
                         <div class="col-sm-1">
@@ -255,6 +255,11 @@ $(function () {
     label small{
         color: #666;
         margin-left:10px;
+    }
+    form label.name{
+        display: inline-block;
+        width: 70px;
+        text-align: right;
     }
 </style>
 @endsection

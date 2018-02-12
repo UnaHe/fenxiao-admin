@@ -246,4 +246,17 @@ class UserService
         return $data;
     }
 
+    /**
+     * 计算用户分成金额
+     * @param $money
+     * @param $rate
+     */
+    public function getUserMoney($money, $rate){
+        //系统扣款比例
+        $systemRate = 0.16;
+        //预估收入 = (订单预估 - 系统扣减手续费) * 用户分成比例
+        return bcmul(bcmul($money, (1 - $systemRate), 5), $rate, 5);
+    }
+
+
 }

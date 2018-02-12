@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     Route::get('/order', ['as'=>'orderlist', 'uses'=>"AlimamaOrderController@show"]);
     //订单列表
     Route::get('/order/list', ['as'=>'orderlist.list', 'uses'=>"AlimamaOrderController@getList"]);
+    //订单详情
+    Route::get('/order/detail',"AlimamaOrderController@detail");
 
 
 
