@@ -55,6 +55,55 @@
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div><!-- /.col -->
+
+                <div class="col-md-3">
+                    <div class="box box-success box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">订单情况</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>今日付款</td>
+                                        <td>
+                                            <div>订单数 <?=$orderStatistics['today_pay']['num']?></div>
+                                            <div>付款金额 ¥<?=$orderStatistics['today_pay']['money']?:0?></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>今日结算</td>
+                                        <td>
+                                            <div>订单数 <?=$orderStatistics['today_settle']['num']?></div>
+                                            <div>结算金额 ¥<?=$orderStatistics['today_settle']['money']?:0?></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>本月付款</td>
+                                        <td>
+                                            <div>订单数 <?=$orderStatistics['cur_month_pay']['num']?></div>
+                                            <div>付款金额 ¥<?=$orderStatistics['cur_month_pay']['money']?:0?></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>本月结算</td>
+                                        <td>
+                                            <div>订单数 <?=$orderStatistics['cur_month_settle']['num']?></div>
+                                            <div>结算金额 ¥<?=$orderStatistics['cur_month_settle']['money']?:0?></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>同步时间</td>
+                                        <td>
+                                            <?=$orderStatistics['last_sync_time']?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+
             </div>
 
         </section><!-- /.content -->

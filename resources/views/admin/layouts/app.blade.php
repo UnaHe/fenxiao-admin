@@ -172,12 +172,10 @@
             <li class="header"></li>
             <li class="dashboard"><a href="{{route("admin.dashboard")}}"><i class='fa fa-dashboard'></i> <span>首页</span></a></li>
             <li class="member"><a href="{{route("admin.user")}}"><i class='fa fa-users'></i> <span>用户管理</span></a></li>
-
-
-
             <li class="order"><a href="{{route("admin.orderlist")}}"><i class='fa fa-bars'></i> <span>订单管理</span></a></li>
-            <li class="remittance"><a href="{{route("admin.remittance")}}"><i class='fa fa-bars'></i> <span>汇款审核</span></a></li>            
+            <li class="pid"><a href="{{route("admin.pid")}}"><i class='fa fa-bars'></i> <span>PID管理</span></a></li>
 
+            
             <li class="treeview">
                 <a href="#"><i class='fa fa-simplybuilt'></i> <span>产品管理</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

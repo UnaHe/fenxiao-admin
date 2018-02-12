@@ -41,6 +41,16 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     Route::get('/order/detail',"AlimamaOrderController@detail");
 
 
+    /*
+     * ========================
+     *  PID管理
+     * ========================
+     */
+    //PID管理
+    Route::get('/pid', ['as'=>'pid', 'uses'=>"PidController@show"]);
+    //PID列表
+    Route::get('/pid/list', ['as'=>'pid.list', 'uses'=>"PidController@getList"]);
+
 
 
 

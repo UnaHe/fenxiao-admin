@@ -14,6 +14,7 @@ use App\Models\AlimamaOrder;
 use App\Models\User;
 use App\Models\UserOrderIncome;
 use App\Models\UserTree;
+use Carbon\Carbon;
 
 class AlimamaOrderService
 {
@@ -154,5 +155,41 @@ class AlimamaOrderService
 
         return $data;
     }
+
+    /**
+     * 订单统计
+     */
+    public function orderStatistics(){
+        $data = [];
+        //今日付款订单
+        $data['today_pay'] = AlimamaOrder::where([
+            ['create_time', ">=", Carbon::now()->startOfDay()],
+            ['order_state', "=", AlimamaOrder::ORDERSTATE_PAYED]
+        ])->selectRaw("count(1) as num, sum(pay_money) as money")->first()->toArray();
+
+
+        //今日结算订单
+        $data['today_settle'] = AlimamaOrder::where([
+            ['settle_time', ">=", Carbon::now()->startOfDay()],
+            ['order_state', "=", AlimamaOrder::ORDERSTATE_SETTLE]
+        ])->selectRaw("count(1) as num, sum(settle_money) as money")->first()->toArray();
+
+        //本月付款订单
+        $data['cur_month_pay'] = AlimamaOrder::where([
+            ['create_time', ">=", Carbon::now()->startOfMonth()->startOfDay()],
+            ['order_state', "=", AlimamaOrder::ORDERSTATE_PAYED]
+        ])->selectRaw("count(1) as num, sum(pay_money) as money")->first()->toArray();
+
+        //本月结算订单
+        $data['cur_month_settle'] = AlimamaOrder::where([
+            ['settle_time', ">=", Carbon::now()->startOfMonth()->startOfDay()],
+            ['order_state', "=", AlimamaOrder::ORDERSTATE_SETTLE]
+        ])->selectRaw("count(1) as num, sum(settle_money) as money")->first()->toArray();
+
+        //上次同步时间
+        $data['last_sync_time'] = AlimamaOrder::max("sync_time");
+        return $data;
+    }
+
 
 }

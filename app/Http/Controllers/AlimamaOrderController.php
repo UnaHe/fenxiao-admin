@@ -50,23 +50,4 @@ class AlimamaOrderController extends Controller
         return $this->ajaxSuccess($data);
     }
 
-
-    /**
-     * 汇款审核
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function remittance(){
-        return view("admin.order.remittance");
-    }
-
-    /**
-     * 汇款待审核数据列表
-     * @param Request $request
-     * @return mixed
-     */
-    public function getRemittanceList(Request $request){
-        return $this->getOrderlist($request, Orderlist::STATUS_REMITTANCE);
-    }
-
-
 }
