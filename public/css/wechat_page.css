@@ -1,0 +1,749 @@
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.oh {
+    overflow: hidden;
+}
+.text-left {
+    text-align: left !important;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right !important;
+}
+.pr {
+    position: relative;
+}
+html,
+body,
+div,
+ul,
+li {
+    overflow-scrolling: touch;
+    webkit-overflow-scrolling: touch;
+}
+a,
+img {
+    border: none;
+}
+a:active {
+    border: none;
+    background-color: #eee;
+}
+input,
+textarea {
+    outline: none;
+    border: none;
+    resize: none;
+    font-family: "Arial", "microsoft yahei";
+}
+body {
+    font-family: "microsoft yahei" !important;
+    min-width: 240px;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 61.5%;
+    padding: 0;
+    background-color: #faf5f6;
+    position: relative;
+}
+.page {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+}
+a {
+    color: #505050;
+    text-decoration: none;
+}
+i,
+b {
+    font-weight: normal;
+    font-style: normal;
+}
+p {
+    margin: 0;
+}
+/*浮动盒子布局*/
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.flex-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    /*垂直居中*/
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    /*水平居中*/
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.flex-center-top {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    /*水平居中*/
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.flex-col {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+/*共用样式*/
+.page {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.media-list {
+    padding: 8px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.line-btm:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid #e2e2e2;
+    -webkit-transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+}
+.line-top:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #e2e2e2;
+    -webkit-transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+}
+.media-list-title {
+    font-size: 16px;
+    color: #000;
+    line-height: 24px;
+    letter-spacing: .5px;
+    margin: 15px auto 3px;
+}
+.media-list-subtext {
+    font-size: 12px;
+    color: #ff6a6a;
+    line-height: 16px;
+    letter-spacing: .5px;
+}
+.media-list-subtext b {
+    font-weight: bold;
+}
+.media-list-info {
+    font-size: 12px;
+    color: #969696;
+    height: 28px;
+    line-height: 1;
+    margin-top: 12px;
+    padding-bottom: 15px;
+}
+.media-list-info .sales {
+    margin-top: 4px;
+    text-align: right;
+    height: 14px;
+    line-height: 14px;
+}
+.media-list-info .sales img {
+    float: left;
+    width: auto;
+    height: 14px;
+    margin-right: 5px;
+}
+.media-list-info .sales i {
+    color: #3e3e3e;
+}
+.media-list-info i.rmb {
+    font-size: 26px;
+    color: #fc3616;
+    margin-top: 3px;
+    margin-right: 3px;
+}
+.media-list-info .coupon-txt {
+    max-width: 50px;
+}
+.media-list-info .coupon-txt .old-price {
+    padding-bottom: 2px;
+    text-decoration: line-through;
+}
+.media-list-info .coupon-txt .old-price i {
+    text-decoration: line-through;
+}
+.media-list-info .coupon-price {
+    width: auto;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    margin: 4px 0 0 0;
+    position: relative;
+}
+.media-list-info .coupon-price img {
+    width: auto;
+    height: 20px;
+}
+.media-list-info .coupon-price .price {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #ff6600;
+    padding-left: 22px;
+    text-align: center;
+    font-size: 13px;
+    min-width: 35px;
+    height: 20px;
+    line-height: 23px;
+}
+.media-list-info:active {
+    color: #969696;
+}
+.media-list-info p {
+    display: inline-block;
+}
+.media-arial {
+    font-family: Arial !important;
+}
+.media-rmb {
+    margin: 0 4px;
+    color: #ff6600;
+}
+.media-price {
+    font-size: 30px;
+    color: #fc3616;
+    margin-right: 5px;
+}
+.btn {
+    font-size: 16px;
+    color: #000;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 3px;
+}
+.btn-bg-orange {
+    background-color: #ff6600;
+}
+
+
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.oh {
+    overflow: hidden;
+}
+.text-left {
+    text-align: left !important;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right !important;
+}
+.pr {
+    position: relative;
+}
+.detail-product {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.detail-product img {
+    max-width: 100%;
+    float: left;
+}
+.scroll-box {
+    position: relative;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 60px;
+}
+.media-list {
+    padding: 0 10px;
+}
+.media-tkl {
+    margin-top: 15px;
+    display: none;
+    background-color: transparent;
+}
+.media-tkl .tkl-txt {
+    margin-top: 5px;
+    color: #969696;
+    font-size: 14px;
+}
+.detail-product-head {
+    overflow: hidden;
+}
+.detail-command {
+    width: 60%;
+    display: inline-block;
+    border: 1px dashed #ff6600;
+    border-radius: 2px;
+    background-color: #fff;
+    margin: auto 20%;
+}
+.detail-command b {
+    font-size: 12px;
+    color: #969696;
+}
+.detail-command-box {
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 3px;
+    color: #ff6600;
+    display: inline-block;
+    overflow: hidden;
+}
+.detail-command-box span {
+    font-family: "Arial";
+}
+.detail-command-box span,
+.detail-command-box textarea,
+.detail-command-box input {
+    display: none;
+    margin-right: 10px;
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+}
+.detail-command-box textarea,
+.detail-command-box input {
+    text-align: center;
+    font-size: 20px;
+    color: #ff6600;
+}
+.detail-command-box b {
+    font-size: 12px;
+    color: #969696;
+    display: inline-block;
+}
+.detail-command-tips {
+    margin: 0;
+    padding-top: 3px;
+    font-size: 13px;
+    color: #969696;
+}
+.detail-copy-command a {
+    width: 80%;
+    margin-left: 20%;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #ff6600;
+    display: block;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #ff6600;
+    text-align: center;
+    text-decoration: none;
+}
+.detail-load-failed {
+    width: 100%;
+    font-size: 14px;
+    color: #969696;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #fff;
+}
+.detail-load-failed a {
+    display: block;
+}
+.detail-load-failed a:active {
+    background-color: #fafafa;
+}
+.detail-load-failed a span {
+    height: 25px;
+    line-height: 25px;
+    display: inline-block;
+    padding: 0 15px;
+    border-radius: 18px;
+    color: #ff6600;
+    border: 1px solid #ff6600;
+    margin-top: 11px;
+}
+.detail-load-failed a span b {
+    line-height: 14px;
+    height: 14px;
+    margin-top: 7px;
+}
+.detail-load-failed a span img {
+    width: auto;
+    height: 14px;
+    margin: 6px 0 5px 5px;
+    float: right;
+}
+.pull-fixed {
+    position: fixed;
+    top: 0;
+}
+.detail-content {
+    display: none;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+}
+.detail-content img {
+    width: 100%;
+}
+.detail-content textarea {
+    display: none;
+}
+.detail-footer-bar {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 12px;
+    background-color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 10px;
+}
+.detail-footer-bar a {
+    display: block;
+    text-align: center;
+    float: left;
+}
+.detail-footer-bar a span {
+    color: #969696;
+}
+.detail-footer-bar p {
+    line-height: 20px;
+}
+.detail-ft-bar {
+    vertical-align: baseline;
+}
+.detail-ft-bar i,
+.detail-ft-bar b {
+    font-family: Arial;
+    color: #ff6600;
+}
+.detail-ft-bar i {
+    margin: 0 5px;
+}
+.detail-ft-bar b {
+    font-size: 24px;
+}
+.detail-coupon-after {
+    width: 48%;
+}
+.detail-coupon-after .price-tit {
+    margin-top: 19px;
+    float: left;
+}
+.detail-coupon {
+    width: 20%;
+    height: 50px;
+    color: #fff;
+    background-color: #ff9402;
+    font-size: 12px;
+    padding-top: 5px;
+}
+.detail-coupon i,
+.detail-coupon b {
+    color: #fff;
+}
+.detail-coupon b {
+    font-size: 17px;
+}
+.detail-coupon-buy {
+    width: 32%;
+    color: #fff;
+    background-color: #ff5000;
+}
+.detail-coupon-buy b {
+    font-size: 17px;
+}
+.pull-box {
+    font-size: 18px;
+    text-align: center;
+}
+/*口令蒙版层*/
+.dialog {
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.detail-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.detail-mask-content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    z-index: 2000;
+    padding: 0 10px;
+}
+.detail-mask-allow {
+    text-align: right;
+    padding: 0 10px;
+}
+.detail-mask-allow img {
+    width: 60px;
+}
+.detail-mask-command {
+    width: 84%;
+    margin: 0 8%;
+    border-radius: 3px;
+    overflow: hidden;
+    font-size: 16px;
+    background-color: #fff;
+}
+.detail-product-img-box {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.detail-product-img {
+    width: 100%;
+    min-height: 300px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+.detail-product-img img {
+    width: 100%;
+}
+.detail-product-img.line-btm:after {
+    border-bottom-color: #faf5f6;
+}
+.detail-mask-command-head {
+    overflow: hidden;
+    padding: 20px;
+    background-image: -moz-linear-gradient(top, #ff7a23, #ff5700);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff7a23), color-stop(1, #ff5700));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7a23', endColorstr='#ff5700', GradientType='0');
+}
+.detail-mask-command-head p {
+    color: #fff;
+    padding-bottom: 5px;
+}
+.detail-mask-command-head p span {
+    float: left;
+    margin-right: 15px;
+}
+.detail-mask-command-head p img {
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+}
+.detail-mask-command-head p img.android-img {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+}
+.detail-mask-command-head p i {
+    color: #fff000;
+}
+.detail-mask-command-ios,
+.detail-mask-command-android {
+    overflow: hidden;
+    display: none;
+}
+.detail-mask-con {
+    padding: 20px;
+    text-align: center;
+}
+.detail-mask-con-title {
+    height: 30px;
+    font-size: 16px;
+    line-height: 30px;
+    position: relative;
+}
+.detail-mask-title-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.detail-mask-title-box p {
+    display: inline-block;
+    background-color: #fff;
+    padding: 0 10px;
+}
+.detail-mask-line {
+    width: 100%;
+    height: 14px;
+    border-bottom: 1px dashed #e2e2e2;
+}
+.detail-mask-tips {
+    font-size: 12px;
+    color: #969696;
+    padding-bottom: 20px;
+}
+.detail-mask-command-box {
+    border: 1px dashed #ff6600;
+    margin-bottom: 10px;
+    font-family: Arial;
+    color: #ff6600;
+    line-height: 43px;
+    overflow: hidden;
+}
+.detail-mask-command-box textarea {
+    text-align: center;
+    width: 98%;
+    line-height: 43px;
+    color: #ff6600;
+    font-size: 16px;
+}
+.detail-mask-command-box span,
+.detail-mask-command-box textarea {
+    display: none;
+}
+.detail-mask-copy-btn {
+    color: #fff;
+}
+/*一键复制按钮*/
+.copy-tao-words {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0 15px;
+}
+.copy-tao-words .copy-tao-words-btn {
+    display: inline-block;
+    min-width: 40%;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 18px;
+    padding: 0 15px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #ff5000;
+}
+.copy-tao-words .copy-tao-words-btn.copied-sta {
+    font-size: 16px !important;
+    background-color: #ff5000 !important;
+}
+.copy-tao-words .copy-tao-words-txt {
+    font-size: 13px;
+    color: #969696;
+    margin-top: 7px;
+}
+/*reset*/
+@media screen and (min-width: 100px) and (max-width: 320px) {
+    html {
+        font-size: 120%;
+    }
+    .media-list-title {
+        font-size: 16px;
+    }
+    .detail-command-tips {
+        font-size: 12px !important;
+    }
+    .detail-mask-command {
+        width: 90%;
+        margin: 0 5%;
+    }
+    .detail-mask-command-head {
+        padding: 15px 20px;
+    }
+}
+@media screen and (min-width: 240px) and (max-width: 320px) {
+    html {
+        font-size: 110%;
+    }
+    .detail-command-box span,
+    .detail-command-box textarea,
+    .detail-command-box input {
+        margin-right: 0;
+    }
+}
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    html {
+        font-size: 110%;
+    }
+}
+@media screen and (min-width: 376px) and (max-width: 414px) {
+    html {
+        font-size: 100%;
+    }
+}
+@media screen and (min-width: 415px) and (max-width: 540px) {
+    html {
+        font-size: 90%;
+    }
+}
+@media screen and (min-width: 541px) and (max-width: 639px) {
+    html {
+        font-size: 80%;
+    }
+}
+@media screen and (min-width: 640px) {
+    html {
+        font-size: 70%;
+    }
+}
+
+.ios-btn a{
+    float: right;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 18px;
+    padding: 0 15px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #ff5000;
+    text-align: center;
+    margin-top: 5px;
+}
