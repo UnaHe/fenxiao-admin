@@ -74,6 +74,29 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //刷新授权
     Route::post('/taobaotoken/refresh', ['as'=>'taobaotoken.refresh', 'uses'=>"TaobaoTokenController@refreshToken"]);
 
+    /*
+     * ========================
+     *  banner管理
+     * ========================
+     */
+    //banner管理
+    Route::get('/banner', ['as'=>'banner', 'uses'=>"BannerController@show"]);
+    //banner列表
+    Route::get('/banner/list', ['as'=>'banner.list', 'uses'=>"BannerController@getList"]);
+    //banner保存
+    Route::post('/banner/save', ['as'=>'banner.save', 'uses'=>"BannerController@save"]);
+    //banner删除
+    Route::post('/banner/del', ['as'=>'banner.del', 'uses'=>"BannerController@del"]);
+
+    /*
+     * ========================
+     *  其他
+     * ========================
+     */
+    //文件上传
+    Route::post("/file/upload", ['as'=>'upload', 'uses'=>'FileController@upload']);
+
+
 
 
     //页面管理
@@ -87,7 +110,6 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
 
     //编辑器文件上传
     Route::post("/file/umeditorUpload", ['as'=>'umeditorUpload', 'uses'=>'FileController@umeditorUpload']);
-    Route::post("/file/upload", ['as'=>'upload', 'uses'=>'FileController@upload']);
 
     //标签管理
     Route::get('/tag', ['as'=>'tag', 'uses'=>"TagController@show"]);
@@ -96,11 +118,6 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     Route::post('/tag/del', ['as'=>'tag.del', 'uses'=>"TagController@del"]);
     Route::post('/tag/allTagPic', ['as'=>'tag.allTagPic', 'uses'=>"TagController@saveAllTagPic"]);
 
-    //banner管理
-    Route::get('/banner', ['as'=>'banner', 'uses'=>"BannerController@show"]);
-    Route::get('/banner/list', ['as'=>'banner.list', 'uses'=>"BannerController@getList"]);
-    Route::post('/banner/save', ['as'=>'banner.save', 'uses'=>"BannerController@save"]);
-    Route::post('/banner/del', ['as'=>'banner.del', 'uses'=>"BannerController@del"]);
 
     //产品管理
     Route::get('/production', ['as'=>'production', 'uses'=>"ProductionController@show"]);

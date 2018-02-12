@@ -176,8 +176,9 @@
             <li class="pid"><a href="{{route("admin.pid")}}"><i class='fa fa-bars'></i> <span>PID管理</span></a></li>
             <li class="feedback"><a href="{{route("admin.feedback")}}"><i class='fa fa-bars'></i> <span>意见反馈</span></a></li>
             <li class="taobaotoken"><a href="{{route("admin.taobaotoken")}}"><i class='fa fa-bars'></i> <span>系统授权管理</span></a></li>
+            <li class="banner"><a href="{{route("admin.banner")}}"><i class='fa fa-bars'></i><span>轮播图管理</span></a></li>
 
-            
+
             <li class="treeview">
                 <a href="#"><i class='fa fa-simplybuilt'></i> <span>产品管理</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -211,7 +212,6 @@
  --}}
                 <li class="menu_about"><a href="{{route('admin.menu', ['menu_name'=> 'about'])}}">了解觅行配置</a></li>
                 <li class="menu_footer"><a href="{{route('admin.menu', ['menu_name'=> 'footer'])}}">页脚配置</a></li>
-                <li class="banner"><a href="{{route("admin.banner")}}">轮播图管理</a></li>   
               </ul>
             </li>
 
