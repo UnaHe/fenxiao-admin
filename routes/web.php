@@ -62,6 +62,19 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     Route::get('/feedback/list', ['as'=>'feedback.list', 'uses'=>"FeedbackController@getList"]);
 
 
+    /*
+     * ========================
+     *  系统授权管理
+     * ========================
+     */
+    //系统授权管理
+    Route::get('/taobaotoken', ['as'=>'taobaotoken', 'uses'=>"TaobaoTokenController@show"]);
+    //系统授权列表
+    Route::get('/taobaotoken/list', ['as'=>'taobaotoken.list', 'uses'=>"TaobaoTokenController@getList"]);
+    //刷新授权
+    Route::post('/taobaotoken/refresh', ['as'=>'taobaotoken.refresh', 'uses'=>"TaobaoTokenController@refreshToken"]);
+
+
 
     //页面管理
     Route::get('/page', ['as'=>'page', 'uses'=>"PageController@index"]);
