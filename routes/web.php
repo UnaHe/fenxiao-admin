@@ -51,15 +51,16 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //PID列表
     Route::get('/pid/list', ['as'=>'pid.list', 'uses'=>"PidController@getList"]);
 
+    /*
+     * ========================
+     *  意见反馈
+     * ========================
+     */
+    //意见反馈管理
+    Route::get('/feedback', ['as'=>'feedback', 'uses'=>"FeedbackController@show"]);
+    //意见反馈列表
+    Route::get('/feedback/list', ['as'=>'feedback.list', 'uses'=>"FeedbackController@getList"]);
 
-
-
-    //汇款审核
-    Route::get('/remittance', ['as'=>'remittance', 'uses'=>"OrderlistController@remittance"]);
-    //汇款待审核数据列表
-    Route::get('/remittance/list', ['as'=>'remittance.list', 'uses'=>"OrderlistController@getRemittanceList"]);
-    //设置订单状态
-    Route::post('/order/setState', ['as'=>'orderlist.setState', 'uses'=>"OrderlistController@setState"]);
 
 
     //页面管理

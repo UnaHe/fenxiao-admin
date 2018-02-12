@@ -174,6 +174,7 @@
             <li class="member"><a href="{{route("admin.user")}}"><i class='fa fa-users'></i> <span>用户管理</span></a></li>
             <li class="order"><a href="{{route("admin.orderlist")}}"><i class='fa fa-bars'></i> <span>订单管理</span></a></li>
             <li class="pid"><a href="{{route("admin.pid")}}"><i class='fa fa-bars'></i> <span>PID管理</span></a></li>
+            <li class="feedback"><a href="{{route("admin.feedback")}}"><i class='fa fa-bars'></i> <span>意见反馈</span></a></li>
 
             
             <li class="treeview">
