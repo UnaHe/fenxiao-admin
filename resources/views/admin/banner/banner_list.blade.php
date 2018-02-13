@@ -172,13 +172,20 @@ $(function () {
     $(document).on('click', '.delete', function(){
         var id = $(this).data("id");
         layer.confirm("确定删除？", function () {
+            var loading = layer.load(1, {
+                shade: [0.3,'#000']
+            });
+
             $.post('/banner/del', {id: id}, function(res){
+                layer.close(loading);
                 if (res.code == 200) {
                     layer.msg("操作成功",{icon:1});
                     $("#list").dataTable().fnDraw(false);
                 }else{
                     layer.msg(res.msg,{icon:5});
                 }
+            }).fail(function(){
+                layer.msg("网络错误",{icon:5});
             });
         })
     });
