@@ -19,11 +19,20 @@ class SysConfigService
      * @return null
      */
     public function get($key, $default=null){
-        if(!$value = CacheHelper::getCache([$key])){
-            $value = SysConfig::where('key', $key)->pluck("value")->first();
-            CacheHelper::setCache($value, 1, [$key]);
+        $value = SysConfig::where('key', $key)->pluck("value")->first();
+        return $value ?: $default;
+    }
+
+    /**
+     * 获取所有配置信息
+     */
+    public function configs(){
+        $configModels = SysConfig::get();
+        $configs = [];
+        foreach ($configModels as $configModel){
+            $configs[$configModel['key']] = $configModel;
         }
 
-        return $value ?: $default;
+        return $configs;
     }
 }

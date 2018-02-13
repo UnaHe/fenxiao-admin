@@ -178,6 +178,7 @@
             <li class="taobaotoken"><a href="{{route("admin.taobaotoken")}}"><i class='fa fa-bars'></i> <span>系统授权管理</span></a></li>
             <li class="banner"><a href="{{route("admin.banner")}}"><i class='fa fa-bars'></i><span>Banner管理</span></a></li>
             <li class="user_bill"><a href="{{route("admin.user_bill")}}"><i class='fa fa-bars'></i> <span>账单管理</span></a></li>
+            <li class="system_config"><a href="{{route("admin.system_config")}}"><i class='fa fa-cog'></i> <span>系统管理</span></a></li>
 
 
             <li class="treeview">
