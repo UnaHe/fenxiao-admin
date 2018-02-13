@@ -33,6 +33,7 @@ return array(
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
+    'Qiniu\\' => array($vendorDir . '/qiniu/php-sdk/src/Qiniu'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src/Psy'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),

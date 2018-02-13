@@ -13,7 +13,8 @@
         "laravel/passport": "^4.0",
         "laravel/tinker": "~1.0",
         "maatwebsite/excel": "^2.1",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "qiniu/php-sdk": "^7.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

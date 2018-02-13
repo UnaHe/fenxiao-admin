@@ -19,7 +19,7 @@
 		<div class="form-group">
 			<label for="title">图片</label>
 			<div>
-				<img src="<%=pic%>" class="pic" id="pic" style="max-width: 500px; max-height: 300px;"/>
+				<img src="<%=pic%>" class="pic" id="pic"/>
 				<div id="add_pic" class="btn btn-info">上传图片</div>
 				<input type="hidden" id="pic_val" name="pic" value="<%=pic%>">
 			</div>

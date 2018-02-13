@@ -9,7 +9,7 @@
 </script>
 
 <section class="content-header">
-    <h1>轮播图管理</h1>
+    <h1>Banner管理</h1>
 </section>
 
 <!-- Main content -->
@@ -57,7 +57,7 @@ $(function () {
         {
           "data": "pic",
           "render": function(data, type, full) {
-                return "<img src='"+data+"' width='200' height='100'/>"
+                return "<div class='banner_img_wrap'><a href='"+data+"' target='_blank' title='点击查看大图'><img src='"+data+"' class='banner_img'/></a></div>"
           }
         },
         {'data': 'click_url'},
@@ -109,14 +109,6 @@ $(function () {
 
                     file_data_name: 'upfile',
 
-                    //压缩图片
-                    resize: {
-                        width: 1000,
-                        height: 500,
-                        crop: true,
-                        preserve_headers: false
-                    },
-
                     init: {
                         FilesAdded: function(up, files) {
                             plupload.each(files, function(file) {
@@ -130,11 +122,11 @@ $(function () {
                         },
                         FileUploaded: function(uploader,file,responseObject){
                             var data = eval('('+responseObject.response+')');
-                            if (data.state == "SUCCESS") {
-                                $("#pic").attr("src", "/"+data.url);
-                                $("#pic_val").val(data.url);
+                            if (data.code == 200) {
+                                $("#pic").attr("src", data.data);
+                                $("#pic_val").val(data.data);
                             }else{
-                                $.simplyToast('图片上传失败，请重试!', 'danger');
+                                layer.msg('图片上传失败，请重试!',{icon:5});
                             }
                             $("#add_pic").html("上传图片");
                         },
@@ -143,7 +135,7 @@ $(function () {
                             if (err.status == 413) {
                                 msg = "文件太大";
                             }
-                            $.simplyToast(msg, 'danger');
+                            layer.msg(msg,{icon:5});
                         }
                     }
                 });
@@ -222,25 +214,33 @@ $(function () {
 
 
 <style type="text/css">
-  .edit-dialog .list li{
-    list-style: none;
-  }
+    .edit-dialog .list li{
+        list-style: none;
+    }
 
-  .edit-dialog .list li label{
-    text-align: right;
-    width: 120px;
-  }
+    .edit-dialog .list li label{
+        text-align: right;
+        width: 120px;
+    }
 
-  .edit-dialog .list li span{
-    padding-left: 20px;
-  }
+    .edit-dialog .list li span{
+        padding-left: 20px;
+    }
 
-  .edit-dialog #pic{
-    display: block;
-    margin-bottom: 20px;    
-    width: 300px;
-    height: 150px;
-  }
+    #pic{
+        display: block;
+        margin-bottom: 20px;
+        max-width: 500px;
+        max-height: 300px;
+    }
+
+    .banner_img_wrap{
+        width: 500px;
+    }
+    .banner_img{
+        max-width: 500px;
+        max-height:300px;
+    }
 </style>
 
 @endsection
