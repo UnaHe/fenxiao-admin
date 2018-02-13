@@ -88,6 +88,17 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //banner删除
     Route::post('/banner/del', ['as'=>'banner.del', 'uses'=>"BannerController@del"]);
 
+
+    /*
+     * ========================
+     *  账单管理
+     * ========================
+     */
+    //账单管理
+    Route::get('/user_bill', ['as'=>'user_bill', 'uses'=>"UserBillController@show"]);
+    //账单列表
+    Route::get('/user_bill/list', ['as'=>'user_bill.list', 'uses'=>"UserBillController@getList"]);
+
     /*
      * ========================
      *  其他
