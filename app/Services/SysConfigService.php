@@ -9,6 +9,8 @@ namespace App\Services;
 
 use App\Helpers\CacheHelper;
 use App\Models\SysConfig;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SysConfigService
 {
@@ -34,5 +36,24 @@ class SysConfigService
         }
 
         return $configs;
+    }
+
+    /**
+     * 保存配置
+     * @param Request $request
+     */
+    public function saveConfig($request){
+        $configs = $request->post();
+        DB::beginTransaction();
+        try{
+            foreach ($configs as $key=>$value){
+                SysConfig::where("key", $key)->update(['value'=> $value]);
+            }
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollBack();
+            return false;
+        }
+        return true;
     }
 }

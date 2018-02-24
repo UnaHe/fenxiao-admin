@@ -13,5 +13,6 @@ class SysConfig extends Model
 {
     protected $table = "pytao_sys_config";
     protected $guarded = ['id'];
+    public $timestamps = false;
 
 }
