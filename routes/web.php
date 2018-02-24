@@ -101,10 +101,10 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
 
     /*
      * ========================
-     *  系统管理
+     *  系统配置
      * ========================
      */
-    //系统管理
+    //系统配置
     Route::get('/system_config', ['as'=>'system_config', 'uses'=>"SystemConfigController@show"]);
     //保存系统配置
     Route::post('/system_config/save', "SystemConfigController@saveConfig");
