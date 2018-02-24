@@ -136,6 +136,19 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //重试任务
     Route::post('/failed_jobs/retry', ['as'=>'failed_jobs.refresh', 'uses'=>"FailedJobsController@retry"]);
 
+    /*
+     * ========================
+     *  等级配置管理
+     * ========================
+     */
+    //等级配置管理
+    Route::get('/grade', ['as'=>'grade', 'uses'=>"GradeController@show"]);
+    //等级配置列表
+    Route::get('/grade/list', ['as'=>'grade.list', 'uses'=>"GradeController@getList"]);
+    //等级配置保存
+    Route::post('/grade/save', ['as'=>'grade.save', 'uses'=>"GradeController@save"]);
+    //等级配置删除
+    Route::post('/grade/del', ['as'=>'grade.del', 'uses'=>"GradeController@del"]);
 
     /*
      * ========================
@@ -147,7 +160,7 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
 
 
 
-    
+
     //修改密码
     Route::get('/system/updatepwd', ['as'=>'system.updatepwd', 'uses'=>"SystemController@updatepwd"]);
     Route::post('/system/updatepwd', ['as'=>'system.updatepwd', 'uses'=>"SystemController@updatepwdSave"]);

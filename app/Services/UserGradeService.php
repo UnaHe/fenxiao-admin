@@ -98,4 +98,99 @@ class UserGradeService
 
         return isset($userRate[$level]) ? $userRate[$level] : 0;
     }
+
+    /**
+     * 获取等级列表
+     */
+    public function getGradeList(){
+        $grades = $this->grades;
+        foreach ($grades as &$grade){
+            if($grade['child_grade']){
+                $grade['child_grade_name'] = $this->getGrade($grade['child_grade'])['grade_name'];
+            }else{
+                $grade['child_grade_name'] = "";
+            }
+        }
+
+        $total = count($grades);
+        return [
+            'data'=> array_values($grades),
+            'recordsFiltered' => $total,
+            'recordsTotal' => $total,
+        ];
+    }
+
+    /**
+     * 保存
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function save($request){
+        $id = $request->post("id");
+        if($id){
+            $model = Grade::find($id);
+        }else{
+            $model = new Grade();
+        }
+
+        //直推返利存储格式
+        $rates = $request->post('rate');
+        $rateStr = "";
+        if($rates){
+            foreach ($rates as $key=>&$value){
+                $value = $key.":".$value;
+            }
+            $rateStr = implode(";", $rates);
+        }
+
+        //平行返利存储格式
+        $sameRates = $request->post('same_rate');
+        $sameRateStr = "";
+        if($sameRates){
+            foreach ($sameRates as $key=>&$value){
+                $value = $key.":".$value;
+            }
+            $sameRateStr = implode(";", $sameRates);
+        }
+
+        $model['grade_name'] = $request->post('grade_name');
+        $model['child_grade'] = $request->post('child_grade');
+        $model['child_grade_num'] = $request->post('child_grade_num');
+        $model['sort'] = $request->post('sort');
+        $model['rate'] = $rateStr;
+        $model['same_rate'] = $sameRateStr;
+        $model['find_parent_level'] = $request->post('find_parent_level');
+        $model['find_same_level'] = $request->post('find_same_level');
+
+        if(!$model->save()){
+            throw new \Exception("保存失败");
+        }
+
+        if(!$id){
+            $model['grade'] = $model['id'];
+            $model->save();
+        }
+
+        return true;
+    }
+
+
+    /**
+     * 删除
+     * @param $id
+     * @return bool
+     * @throws \Exception
+     */
+    public function delete($id){
+        $model = Grade::find($id);
+        if(!$id){
+            throw new \Exception("等级不存在");
+        }
+
+        if(!$model->delete()){
+            throw new \Exception("删除失败");
+        }
+        return true;
+    }
+
 }
