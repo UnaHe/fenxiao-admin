@@ -179,6 +179,7 @@
             <li class="banner"><a href="{{route("admin.banner")}}"><i class='fa fa-bars'></i><span>Banner管理</span></a></li>
             <li class="user_bill"><a href="{{route("admin.user_bill")}}"><i class='fa fa-bars'></i> <span>账单管理</span></a></li>
             <li class="system_config"><a href="{{route("admin.system_config")}}"><i class='fa fa-cog'></i> <span>系统配置</span></a></li>
+            <li class="wechat_domain"><a href="{{route("admin.wechat_domain")}}"><i class='fa fa-bars'></i> <span>域名管理</span></a></li>
 
 
             <li class="treeview">

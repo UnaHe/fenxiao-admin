@@ -109,6 +109,20 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //保存系统配置
     Route::post('/system_config/save', "SystemConfigController@saveConfig");
 
+    /*
+     * ========================
+     *  域名管理
+     * ========================
+     */
+    //域名管理
+    Route::get('/wechat_domain', ['as'=>'wechat_domain', 'uses'=>"WechatDomainController@show"]);
+    //域名列表
+    Route::get('/wechat_domain/list', ['as'=>'wechat_domain.list', 'uses'=>"WechatDomainController@getList"]);
+    //域名保存
+    Route::post('/wechat_domain/save', ['as'=>'wechat_domain.save', 'uses'=>"WechatDomainController@save"]);
+    //域名删除
+    Route::post('/wechat_domain/del', ['as'=>'wechat_domain.del', 'uses'=>"WechatDomainController@del"]);
+
 
     /*
      * ========================
