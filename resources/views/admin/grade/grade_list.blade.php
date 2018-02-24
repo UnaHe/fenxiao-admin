@@ -54,8 +54,42 @@ $(function () {
       'columns':[
         {'data': 'grade_name'},
         {'data': 'sort'},
-        {'data': 'rate'},
-        {'data': 'same_rate'},
+        {
+            "data": "rate",
+            "render": function(data, type, full) {
+                var rate_str="";
+                if(data){
+                    _.each(data.split(";"), function(rate){
+                        if(rate){
+                            var rate_info = rate.split(":");
+                            if(rate_info[0] == 0){
+                                rate_str += "自买"+rate_info[1]+"；";
+                            }else{
+                                rate_str += "直推"+rate_info[0]+"级"+rate_info[1]+"；";
+                            }
+                        }
+                    });
+                }
+
+                return rate_str;
+            }
+        },
+        {
+          "data": "same_rate",
+          "render": function(data, type, full) {
+              var rate_str="";
+              if(data){
+                  _.each(data.split(";"), function(rate){
+                      if(rate){
+                          var rate_info = rate.split(":");
+                          rate_str += "平行"+rate_info[0]+"级"+rate_info[1]+"；";
+                      }
+                  });
+              }
+
+              return rate_str;
+          }
+        },
         {
             "data": "child_grade_name",
             "render": function(data, type, full) {
