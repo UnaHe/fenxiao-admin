@@ -39,28 +39,6 @@
         $("#menu "+sec).addClass('active').parents(".treeview").addClass("active");
       }
 
-      function getOrderState(stateid){
-          var state =  "未知";
-          if (stateid == 0) {
-            state = "待支付"
-          }else if (stateid == 1) {
-            state = "已支付"
-          }else if (stateid == 2) {
-            state = "已消费"
-          }else if (stateid == 3) {
-            state = "退款中"
-          }else if (stateid == 4) {
-            state = "已退款"
-          }else if (stateid == 5) {
-            state = "退款失败"
-          }else if (stateid == 6) {
-            state = "汇款待审核"
-          }else if (stateid == 7) {
-            state = "汇款到账"
-          }
-          return state;        
-      }
-
       //dataTable 国际化
       var oLanguage={
           "oAria": {
@@ -158,7 +136,9 @@
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
           </a>
-
+          <div class="navbar-custom-menu">
+            <a href="/logout" style="color: #ffffff; display: block; height: 50px;line-height: 50px;padding: 0 20px;">注销登录</a>
+          </div>
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
@@ -178,57 +158,15 @@
             <li class="taobaotoken"><a href="{{route("admin.taobaotoken")}}"><i class='fa fa-bars'></i> <span>系统授权管理</span></a></li>
             <li class="banner"><a href="{{route("admin.banner")}}"><i class='fa fa-bars'></i><span>Banner管理</span></a></li>
             <li class="user_bill"><a href="{{route("admin.user_bill")}}"><i class='fa fa-bars'></i> <span>账单管理</span></a></li>
-            <li class="system_config"><a href="{{route("admin.system_config")}}"><i class='fa fa-cog'></i> <span>系统配置</span></a></li>
-            <li class="wechat_domain"><a href="{{route("admin.wechat_domain")}}"><i class='fa fa-bars'></i> <span>域名管理</span></a></li>
-
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-simplybuilt'></i> <span>产品管理</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li class="product_tag"><a href="{{route("admin.tag")}}">标签管理</a></li>
-                    
-                    <li class="product_product"><a href="{{route("admin.production")}}">产品管理</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-simplybuilt'></i> <span>户外文化</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li class="article_category"><a href="{{route("admin.articleCategory")}}">主题管理</a></li>
-                    <li class="article_article"><a href="{{route("admin.article")}}">文章管理</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-edit'></i> <span>页面编辑</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li class="page_manage"><a href="{{route("admin.page")}}">页面管理</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-              <a href="#"><i class='fa fa-cog'></i> <span>网站配置</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li class="page_buynotice"><a href="/admin/page/edit?alias=buynotice">购买说明</a></li>
-                <li class="page_agreement"><a href="/admin/page/edit?alias=agreement">注册条款</a></li>
-{{--                 <li class="menu_main"><a href="{{route('admin.menu', ['menu_name'=> 'main'])}}">主导航配置</a></li>
- --}}
-                <li class="menu_about"><a href="{{route('admin.menu', ['menu_name'=> 'about'])}}">了解觅行配置</a></li>
-                <li class="menu_footer"><a href="{{route('admin.menu', ['menu_name'=> 'footer'])}}">页脚配置</a></li>
-              </ul>
-            </li>
 
             <li class="treeview">
               <a href="#"><i class='fa fa-cog'></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                
-                <li class="updatepwd"><a href="{{route('admin.system.updatepwd')}}">修改资料</a></li>
+                <li class="system_config"><a href="{{route("admin.system_config")}}">系统配置</a></li>
+                <li class="wechat_domain"><a href="{{route("admin.wechat_domain")}}">域名管理</a></li>
               </ul>
             </li>
-
-            <li><a href="{{url("/logout")}}">注销登录</a></li>
-
-
+            
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
