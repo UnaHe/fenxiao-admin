@@ -126,6 +126,19 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
 
     /*
      * ========================
+     *  失败任务管理
+     * ========================
+     */
+    //失败任务管理
+    Route::get('/failed_jobs', ['as'=>'failed_jobs', 'uses'=>"FailedJobsController@show"]);
+    //失败任务列表
+    Route::get('/failed_jobs/list', ['as'=>'failed_jobs.list', 'uses'=>"FailedJobsController@getList"]);
+    //重试任务
+    Route::post('/failed_jobs/retry', ['as'=>'failed_jobs.refresh', 'uses'=>"FailedJobsController@retry"]);
+
+
+    /*
+     * ========================
      *  其他
      * ========================
      */
@@ -134,57 +147,7 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
 
 
 
-
-    //页面管理
-    Route::get('/page', ['as'=>'page', 'uses'=>"PageController@index"]);
-
-    Route::get('/page/agreement', ['as'=>'agreement.get', 'uses'=>"PageController@getAgreement"]);
-    Route::get('/page/list', ['as'=>'page.list', 'uses'=>"PageController@getList"]);
-    Route::get('/page/edit', ['as'=>'page.edit', 'uses'=>"PageController@edit"]);
-    Route::post('/page/save', ['as'=>'page.save', 'uses'=>"PageController@save"]);
-    Route::post('/page/del', ['as'=>'page.del', 'uses'=>"PageController@del"]);
-
-    //编辑器文件上传
-    Route::post("/file/umeditorUpload", ['as'=>'umeditorUpload', 'uses'=>'FileController@umeditorUpload']);
-
-    //标签管理
-    Route::get('/tag', ['as'=>'tag', 'uses'=>"TagController@show"]);
-    Route::get('/tag/list', ['as'=>'tag.list', 'uses'=>"TagController@getList"]);
-    Route::post('/tag/save', ['as'=>'tag.save', 'uses'=>"TagController@save"]);
-    Route::post('/tag/del', ['as'=>'tag.del', 'uses'=>"TagController@del"]);
-    Route::post('/tag/allTagPic', ['as'=>'tag.allTagPic', 'uses'=>"TagController@saveAllTagPic"]);
-
-
-    //产品管理
-    Route::get('/production', ['as'=>'production', 'uses'=>"ProductionController@show"]);
-    Route::get('/production/list', ['as'=>'production.list', 'uses'=>"ProductionController@getList"]);
-    Route::get('/production/edit', ['as'=>'production.edit', 'uses'=>"ProductionController@edit"]);
-    Route::post('/production/save', ['as'=>'production.save', 'uses'=>"ProductionController@save"]);
-    Route::post('/production/del', ['as'=>'production.del', 'uses'=>"ProductionController@del"]);
-    Route::get('/production/getPrice', ['as'=>'production.getPrice', 'uses'=>"ProductionController@getPrice"]);
-    Route::get('/production/getPriceInfo', ['as'=>'production.getPriceInfo', 'uses'=>"ProductionController@getPriceInfo"]);
-    Route::post('/production/savePriceInfo', ['as'=>'production.savePriceInfo', 'uses'=>"ProductionController@savePriceInfo"]);
-    Route::post('/production/delPriceInfo', ['as'=>'production.delPriceInfo', 'uses'=>"ProductionController@delPriceInfo"]);
-
-
-    //户外文化管理
-    Route::get('/article', ['as'=>'article', 'uses'=>"ArticleController@index"]);
-    Route::get('/article/list', ['as'=>'article.list', 'uses'=>"ArticleController@getList"]);
-    Route::get('/article/edit', ['as'=>'article.edit', 'uses'=>"ArticleController@edit"]);
-    Route::post('/article/save', ['as'=>'article.save', 'uses'=>"ArticleController@save"]);
-    Route::post('/article/del', ['as'=>'article.del', 'uses'=>"ArticleController@del"]);
-    //户外文化主题管理
-    Route::get('/articleCategory', ['as'=>'articleCategory', 'uses'=>"ArticleCategoryController@show"]);
-    Route::get('/articleCategory/list', ['as'=>'articleCategory.list', 'uses'=>"ArticleCategoryController@getList"]);
-    Route::post('/articleCategory/save', ['as'=>'articleCategory.save', 'uses'=>"ArticleCategoryController@save"]);
-    Route::post('/articleCategory/del', ['as'=>'articleCategory.del', 'uses'=>"ArticleCategoryController@del"]);
-
-
-    //菜单管理
-    Route::get('/menu/{menu_name}', ['as'=>'menu', 'uses'=>"MenuController@edit"]);
-    Route::post('/menu/save', ['as'=>'menu.save', 'uses'=>"MenuController@save"]);
-    Route::post('/menu/saveAboutPageLink', ['as'=>'menu.saveAboutPageLink', 'uses'=>"MenuController@saveAboutPageLink"]);
-
+    
     //修改密码
     Route::get('/system/updatepwd', ['as'=>'system.updatepwd', 'uses'=>"SystemController@updatepwd"]);
     Route::post('/system/updatepwd', ['as'=>'system.updatepwd', 'uses'=>"SystemController@updatepwdSave"]);
