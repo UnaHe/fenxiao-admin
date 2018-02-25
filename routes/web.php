@@ -150,6 +150,21 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //等级配置删除
     Route::post('/grade/del', ['as'=>'grade.del', 'uses'=>"GradeController@del"]);
 
+
+    /*
+     * ========================
+     *  公告管理
+     * ========================
+     */
+    //公告管理
+    Route::get('/notice', ['as'=>'notice', 'uses'=>"NoticeController@show"]);
+    //公告列表
+    Route::get('/notice/list', ['as'=>'notice.list', 'uses'=>"NoticeController@getList"]);
+    //公告保存
+    Route::post('/notice/save', ['as'=>'notice.save', 'uses'=>"NoticeController@save"]);
+    //公告删除
+    Route::post('/notice/del', ['as'=>'notice.del', 'uses'=>"NoticeController@del"]);
+
     /*
      * ========================
      *  其他
