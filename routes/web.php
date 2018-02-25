@@ -165,6 +165,24 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //公告删除
     Route::post('/notice/del', ['as'=>'notice.del', 'uses'=>"NoticeController@del"]);
 
+
+    /*
+     * ========================
+     *  提现申请
+     * ========================
+     */
+    //提现申请管理
+    Route::get('/withdraw', ['as'=>'withdraw', 'uses'=>"WithdrawController@show"]);
+    //提现申请列表
+    Route::get('/withdraw/list', "WithdrawController@getList");
+    //提现详情
+    Route::get('/withdraw/detail', "WithdrawController@detail");
+    //同意提现申请
+    Route::post('/withdraw/confirm', "WithdrawController@confirm");
+    //拒绝提现申请
+    Route::post('/withdraw/refuse', "WithdrawController@refuse");
+
+
     /*
      * ========================
      *  其他

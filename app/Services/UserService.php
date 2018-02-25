@@ -258,5 +258,34 @@ class UserService
         return bcmul(bcmul($money, (1 - $systemRate), 5), $rate, 5);
     }
 
+    /**
+     * 增加用户余额
+     * @param int $userId 用户id
+     * @param float $amount 金额
+     * @param string $comment 备注
+     * @return bool
+     */
+    public function addBalance($userId, $amount, $comment){
+        DB::beginTransaction();
+        try{
+            if(!User::where("id", $userId)->increment("balance", $amount)){
+                throw new \Exception("更新用户余额失败");
+            }
+            UserBill::create([
+                'user_id' => $userId,
+                'amount' => $amount,
+                'comment' => $comment,
+                'type' => 1,
+                'add_time' => Carbon::now(),
+            ]);
+        }catch (\Exception $e){
+            DB::rollBack();
+            return false;
+        }
+
+        DB::commit();
+        return true;
+    }
+
 
 }
