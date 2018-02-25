@@ -42,7 +42,7 @@
                         <div class="col-sm-1">
                             <select class="form-control"  name="status">
                                 <option value="">不限</option>
-                                <option value="0">未处理</option>
+                                <option value="0" selected="selected">未处理</option>
                                 <option value="1">已成功</option>
                                 <option value="2">已拒绝</option>
                             </select>
@@ -107,6 +107,7 @@ $(function () {
             },
         ]
     };
+    search_param = $("#form").serializeArray();
     $('#userList').dataTable($.extend({}, dataTable_param, table_param));
 
     //搜索
