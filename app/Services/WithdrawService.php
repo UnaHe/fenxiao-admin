@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Helpers\QueryHelper;
+use App\Models\ThirdAccount;
 use App\Models\User;
 use App\Models\UserBill;
 use App\Models\Withdraw;
@@ -75,11 +76,13 @@ class WithdrawService
         }
 
         $user = User::where("id", $withDraw['user_id'])->select(['id', 'mobile'])->first();
+        $thirdAccount = ThirdAccount::where(['user_id' => $withDraw['user_id']])->first();
 
         $withDraw['status_str'] = $this->getWithdrawStatus($withDraw['status']);
         $data = [
             'user' => $user,
-            'withdraw' => $withDraw
+            'withdraw' => $withDraw,
+            'pay_account' => $thirdAccount
         ];
 
         return $data;

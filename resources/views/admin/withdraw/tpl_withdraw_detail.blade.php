@@ -13,6 +13,16 @@
                     <td><%=withdraw.amount%></td>
                 </tr>
 
+                <tr class="bold">
+                    <td>支付宝实名信息</td>
+                    <td><%=pay_account.alipay_real_name%></td>
+                </tr>
+
+                <tr class="bold">
+                    <td>支付宝账号</td>
+                    <td><%=pay_account.alipay_account%></td>
+                </tr>
+
                 <tr>
                     <td>提现申请时间</td>
                     <td><%=withdraw.add_time%></td>
@@ -37,3 +47,10 @@
         <a class="layui-layer-btn1 refuse-btn" style="<%=withdraw.status != 0 ? 'display:none':''%>">拒绝申请</a>
     </div>
 </div>
+
+<style>
+    .bold{
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
