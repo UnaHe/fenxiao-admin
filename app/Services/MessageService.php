@@ -97,4 +97,23 @@ class MessageService
         return true;
     }
 
+
+    /**
+     * 发送消息
+     * @param $userId
+     * @param $message
+     */
+    public function sendMessageToUser($userId, $message){
+        $model = new Message();
+        $model['create_time'] = Carbon::now();
+        $model['to_user_id'] = $userId;
+        $model['type'] = Message::MSG_TYPE_PRIVATE;
+        $model['title'] = $message;
+
+        if(!$model->save()){
+            return false;
+        }
+        return true;
+    }
+
 }

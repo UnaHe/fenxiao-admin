@@ -198,6 +198,22 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
 
     /*
      * ========================
+     *  直升等级申请
+     * ========================
+     */
+    //直升等级申请管理
+    Route::get('/apply_upgrade', ['as'=>'apply_upgrade', 'uses'=>"ApplyUpgradeController@show"]);
+    //直升等级申请列表
+    Route::get('/apply_upgrade/list', "ApplyUpgradeController@getList");
+    //直升等级申请详情
+    Route::get('/apply_upgrade/detail', "ApplyUpgradeController@detail");
+    //同意直升等级申请
+    Route::post('/apply_upgrade/confirm', "ApplyUpgradeController@confirm");
+    //拒绝直升等级申请
+    Route::post('/apply_upgrade/refuse', "ApplyUpgradeController@refuse");
+
+    /*
+     * ========================
      *  其他
      * ========================
      */
