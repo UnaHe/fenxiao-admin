@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Message extends Model
 {
-    protected $table = "xmt_message";
+    protected $table = "pytao_message";
     protected $guarded = ['id'];
+    public $timestamps = false;
 
     /**
      * 消息类型:广播

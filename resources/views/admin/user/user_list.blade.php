@@ -88,6 +88,11 @@
     @include("admin.user.tpl_user_detail")
 </script>
 
+<script type="text/template" id="tpl-send-message">
+    @include("admin.message.tpl_edit_message")
+</script>
+
+
 <script type="text/template" id="tpl-user-tree">
     <div style="width: 600px; height:500px;padding: 20px;">
         <div class="user-tree-info"></div>
@@ -127,7 +132,8 @@ $(function () {
                 "render": function(data, type, full) {
                     return "<a href='javascript:;' class='tools detail' data-id='" + data + "' title='查看'>查看</a>"
                         +"<a href='javascript:;' class='tools user_tree' data-type='parent' data-id='" + data + "' title='编辑'>上级用户</a>"
-                        +"<a href='javascript:;' class='tools user_tree' data-type='children' data-id='" + data + "' title='编辑'>下级用户</a>";
+                        +"<a href='javascript:;' class='tools user_tree' data-type='children' data-id='" + data + "' title='编辑'>下级用户</a>"
+                        +"<a href='javascript:;' class='tools send_message' data-mobile='" + full.mobile + "' title='编辑'>发送通知</a>";
                 }
             },
         ]
@@ -238,7 +244,50 @@ $(function () {
         }).fail(function () {
             layer.msg("查询失败，请重试");
         });
-    })
+    });
+
+
+    //发送通知
+    $(document).on('click', '.send_message', function(){
+        var mobile = $(this).data('mobile');
+        var data = {
+            id: '',
+            title: '',
+            content: '',
+            mobile: mobile,
+        };
+
+        layer.open({
+            type: 1,
+            anim: 2,
+            maxWidth:1000,
+            shadeClose: false,
+            title: "发送通知",
+            content: _.template($("#tpl-send-message").html())(data),
+            btn: ['发送', '关闭'],
+            yes: function(index, layero){
+                var loading = layer.load(1, {
+                    shade: [0.3,'#000']
+                });
+
+                $.post("/message/save", $("#send-message-form").serialize(), function (resp) {
+                    if(resp.code == 200){
+                        layer.closeAll();
+                        layer.msg("发送成功",{icon:1});
+                    }else{
+                        layer.close(loading);
+                        layer.msg(resp.msg,{icon:5});
+                    }
+                }).fail(function () {
+                    layer.close(loading);
+                    layer.msg("保存失败",{icon:5});
+                });
+            },
+            btn2:function(index){
+                layer.closeAll();
+            },
+        });
+    });
 
 });
 

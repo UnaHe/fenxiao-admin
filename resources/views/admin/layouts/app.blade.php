@@ -160,6 +160,7 @@
             <li class="user_bill"><a href="{{route("admin.user_bill")}}"><i class='fa fa-bars'></i> <span>账单管理</span></a></li>
             <li class="notice"><a href="{{route("admin.notice")}}"><i class='fa fa-bars'></i> <span>公告管理</span></a></li>
             <li class="withdraw"><a href="{{route("admin.withdraw")}}"><i class='fa fa-bars'></i> <span>提现申请</span></a></li>
+            <li class="message"><a href="{{route("admin.message")}}"><i class='fa fa-bars'></i> <span>通知管理</span></a></li>
 
             <li class="treeview">
               <a href="#"><i class='fa fa-cog'></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>

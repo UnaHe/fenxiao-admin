@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserMessage extends Model
 {
-    protected $table = "xmt_user_message";
+    protected $table = "pytao_user_message";
     protected $guarded = ['id'];
     public $timestamps = false;
 }

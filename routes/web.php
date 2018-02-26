@@ -182,6 +182,19 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     //拒绝提现申请
     Route::post('/withdraw/refuse', "WithdrawController@refuse");
 
+    /*
+     * ========================
+     *  通知管理
+     * ========================
+     */
+    //通知管理
+    Route::get('/message', ['as'=>'message', 'uses'=>"MessageController@show"]);
+    //通知列表
+    Route::get('/message/list', ['as'=>'message.list', 'uses'=>"MessageController@getList"]);
+    //通知保存
+    Route::post('/message/save', ['as'=>'message.save', 'uses'=>"MessageController@save"]);
+    //通知删除
+    Route::post('/message/del', ['as'=>'message.del', 'uses'=>"MessageController@del"]);
 
     /*
      * ========================
