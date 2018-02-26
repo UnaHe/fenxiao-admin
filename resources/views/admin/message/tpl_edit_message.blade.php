@@ -13,7 +13,7 @@
 
 		<div class="form-group" style="<%=id ?"display:none;":""%>">
 			<label">接收用户手机号（留空则发送到所有用户）</label>
-			<input name="mobile" class="form-control" value="<%=mobile%>"/>
+			<input name="mobile" class="form-control" value="<%=mobile%>" <%=mobile?'readonly="readonly"':''%>/>
 		</div>
 
 	</form>
