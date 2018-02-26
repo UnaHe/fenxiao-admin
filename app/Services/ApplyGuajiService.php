@@ -10,13 +10,13 @@ namespace App\Services;
 
 
 use App\Helpers\QueryHelper;
-use App\Models\ApplyUpgrade;
+use App\Models\ApplyGuaji;
 use App\Models\User;
 use App\Models\UserTree;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class ApplyUpgradeService
+class ApplyGuajiService
 {
     /**
      * 列表
@@ -24,7 +24,7 @@ class ApplyUpgradeService
      */
     public function getList($request){
 
-        $query = ApplyUpgrade::query();
+        $query = ApplyGuaji::query();
 
         //手机号
         if($mobile = trim($request->get('mobile'))){
@@ -52,10 +52,8 @@ class ApplyUpgradeService
         //分页数据
         $data  = (new QueryHelper())->pagination($query);
 
-        $userGrade = (new UserGradeService());
         foreach ($data['data'] as &$item){
             $item['status_str'] = $this->getStatus($item['status']);
-            $item['grade_str'] = $userGrade->getGrade($item['grade'])['grade_name'];
         }
         return $data;
     }
@@ -66,14 +64,12 @@ class ApplyUpgradeService
      * @param $id
      */
     public function detail($id){
-        $model = ApplyUpgrade::find($id);
+        $model = ApplyGuaji::find($id);
         if(!$model){
             throw new \Exception("申请不存在");
         }
 
-        $userGrade = (new UserGradeService());
         $model['status_str'] = $this->getStatus($model['status']);
-        $model['grade_str'] = $userGrade->getGrade($model['grade'])['grade_name'];
 
         $data = [
             'apply' => $model,
@@ -88,7 +84,7 @@ class ApplyUpgradeService
      * @return string
      */
     public function getStatus($status){
-        return isset(ApplyUpgrade::$STATUS[$status]) ? ApplyUpgrade::$STATUS[$status] : "";
+        return isset(ApplyGuaji::$STATUS[$status]) ? ApplyGuaji::$STATUS[$status] : "";
     }
 
     /**
@@ -96,46 +92,27 @@ class ApplyUpgradeService
      * @param $id
      */
     public function confirm($id){
-        $model = ApplyUpgrade::find($id);
+        $model = ApplyGuaji::find($id);
         if(!$model){
             throw new \Exception("申请不存在");
         }
 
-        //需要升级的等级
-        $upgradeGrade = $model['grade'];
-
-        //需要升级的用户id
+        //需要续费的用户id
         $userId = User::where("mobile", $model['mobile'])->pluck("id")->first();
         if(!$userId){
             throw new \Exception("用户不存在");
         }
 
-        $userInfo = UserTree::where("user_id", $userId)->first();
-        $userGradeService = new UserGradeService();
-        //当前用户等级信息
-        $curGradeInfo = $userGradeService->getGrade($userInfo['grade']);
-        //需要升级的等级信息
-        $upgradeGradeInfo = $userGradeService->getGrade($upgradeGrade);
-
-        //判断等级关系
-        if($curGradeInfo['sort'] >= $upgradeGradeInfo['sort']){
-            throw new \Exception("用户无需升级");
-        }
-
         try{
             DB::beginTransaction();
-            if(!ApplyUpgrade::where([
+            if(!ApplyGuaji::where([
                 ['id', '=', $id],
-                ['status', '=', ApplyUpgrade::STATUS_APPLY]
-            ])->update(['status'=> ApplyUpgrade::STATUS_SUCCESS, 'deal_time'=> Carbon::now()])){
+                ['status', '=', ApplyGuaji::STATUS_APPLY]
+            ])->update(['status'=> ApplyGuaji::STATUS_SUCCESS, 'deal_time'=> Carbon::now()])){
                 throw new \Exception("更新状态失败");
             }
 
-            if(!UserTree::where("user_id", $userId)->update(['grade'=>$upgradeGrade])){
-                throw new \Exception("更新用户等级失败");
-            }
-
-            (new MessageService())->sendMessageToUser($model['user_id'], "恭喜您，您的账号直升申请已通过！");
+            (new MessageService())->sendMessageToUser($model['user_id'], "恭喜您，您的挂机申请已通过！");
 
             DB::commit();
         }catch (\Exception $e){
@@ -151,19 +128,19 @@ class ApplyUpgradeService
      * @param $id
      */
     public function refuse($id){
-        $model = ApplyUpgrade::find($id);
+        $model = ApplyGuaji::find($id);
         if(!$model){
             throw new \Exception("申请不存在");
         }
 
-        if(!ApplyUpgrade::where([
+        if(!ApplyGuaji::where([
             ['id', '=', $id],
-            ['status', '=', ApplyUpgrade::STATUS_APPLY]
-        ])->update(['status'=> ApplyUpgrade::STATUS_REFUSE, 'deal_time'=> Carbon::now()])){
+            ['status', '=', ApplyGuaji::STATUS_APPLY]
+        ])->update(['status'=> ApplyGuaji::STATUS_REFUSE, 'deal_time'=> Carbon::now()])){
             return false;
         }
 
-        (new MessageService())->sendMessageToUser($model['user_id'], "很抱歉，您的账号直升申请未通过！");
+        (new MessageService())->sendMessageToUser($model['user_id'], "很抱歉，您的挂机申请未通过！");
 
         return true;
     }

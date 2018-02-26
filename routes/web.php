@@ -214,6 +214,22 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
 
     /*
      * ========================
+     *  挂机续费申请
+     * ========================
+     */
+    //挂机续费申请管理
+    Route::get('/apply_guaji', ['as'=>'apply_guaji', 'uses'=>"ApplyGuajiController@show"]);
+    //挂机续费申请列表
+    Route::get('/apply_guaji/list', "ApplyGuajiController@getList");
+    //挂机续费申请详情
+    Route::get('/apply_guaji/detail', "ApplyGuajiController@detail");
+    //同意挂机续费申请
+    Route::post('/apply_guaji/confirm', "ApplyGuajiController@confirm");
+    //拒绝挂机续费申请
+    Route::post('/apply_guaji/refuse', "ApplyGuajiController@refuse");
+
+    /*
+     * ========================
      *  其他
      * ========================
      */
