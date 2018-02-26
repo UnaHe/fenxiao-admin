@@ -8,7 +8,7 @@
                     <td><%=user.mobile%></td>
                 </tr>
 
-                <tr>
+                <tr class="bold">
                     <td>提现金额</td>
                     <td><%=withdraw.amount%></td>
                 </tr>
