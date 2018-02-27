@@ -16,7 +16,10 @@ class TaobaoTokenController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Request $request){
-        return view("admin.taobao_token.taobao_token_list");
+        $authUrl = 'https://oauth.taobao.com/authorize?response_type=token&client_id='.config("taobao.appkey").'&state=pyt&view=wap';
+        return view("admin.taobao_token.taobao_token_list", [
+            'auth_url' => $authUrl
+        ]);
     }
 
     /**
@@ -47,4 +50,55 @@ class TaobaoTokenController extends Controller
         return $this->ajaxSuccess();
     }
 
+    /**
+     * 保存token
+     * @param Request $request
+     */
+    public function save(Request $request){
+        $memberId = $request->post('member_id');
+        $tokenUrl = $request->post('token_url');
+        $tokens = null;
+
+        if($tokenUrl){
+            $urlInfo = parse_url($tokenUrl);
+            parse_str($urlInfo['fragment'], $tokens);
+            if(!(array_key_exists('access_token', $tokens)
+                && array_key_exists('token_type', $tokens)
+                && array_key_exists('expires_in', $tokens)
+                && array_key_exists('refresh_token', $tokens)
+                && array_key_exists('re_expires_in', $tokens)
+                && array_key_exists('taobao_user_id', $tokens)
+                && array_key_exists('taobao_user_nick', $tokens)
+            )){
+                return $this->ajaxError("授权结果地址错误");
+            }
+        }
+
+        try{
+            (new TaobaoTokenService())->saveToken($memberId, $tokens);
+        }catch (\Exception $e){
+            return $this->ajaxError($e->getMessage());
+        }
+
+        return $this->ajaxSuccess();
+
+    }
+
+
+    /**
+     * 删除
+     * @param Request $request
+     * @return static
+     */
+    public function del(Request $request){
+        $id = $request->input("id");
+
+        try{
+            (new TaobaoTokenService())->delete($id);
+        }catch (\Exception $e){
+            return $this->ajaxError($e->getMessage());
+        }
+
+        return $this->ajaxSuccess();
+    }
 }

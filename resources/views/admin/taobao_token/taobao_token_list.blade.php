@@ -20,6 +20,7 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">系统授权管理</h3>
+            <a href="javascript:;" class="btn btn-primary edit pull-right">添加授权账号</a>
         </div><!-- /.box-header -->
         <div class="box-body">
             <form id="form">
@@ -54,6 +55,10 @@
     </div><!-- /.box -->
 </section><!-- /.content -->
 
+<script type="text/template" id="tpl-edit">
+    @include("admin.taobao_token.tpl_edit_token")
+</script>
+
 
 <!-- DATA TABES SCRIPT -->
 <script src="/admin_resource/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -75,7 +80,9 @@ $(function () {
             {
                 'data': 'id',
                 'render': function (data) {
-                    return "<a href='javascript:;' class='refresh_token' data-id='"+data+"'>刷新</a>";
+                    return "<a href='javascript:;' class='tools refresh_token' data-id='"+data+"'>刷新授权</a>"
+                        +"<a href='javascript:;' class='tools edit' data-id='"+data+"'>重新授权</a>"
+                        +"<a href='javascript:;' class='tools delete' data-id='"+data+"'>删除</a>";
                 }
             },
         ]
@@ -109,6 +116,77 @@ $(function () {
             layer.msg("查询失败，请重试");
         });
     });
+
+    //编辑授权
+    $(document).on('click', '.edit', function(){
+        var id = $(this).data('id');
+        var data = g_data[id];
+
+        if(!data){
+            data = {
+                id: '',
+                member_id: '',
+            };
+        }
+
+
+        layer.open({
+            type: 1,
+            anim: 2,
+            maxWidth:1000,
+            shadeClose: false,
+            title: "编辑授权",
+            content: _.template($("#tpl-edit").html())(data),
+            btn: ['保存', '关闭'],
+            yes: function(index, layero){
+                var loading = layer.load(1, {
+                    shade: [0.3,'#000']
+                });
+
+                $.post("/taobaotoken/save", $("#edit-form").serialize(), function (resp) {
+                    if(resp.code == 200){
+                        layer.closeAll();
+                        layer.msg("保存成功",{icon:1});
+                        setTimeout(function () {
+                            $("#list").dataTable().fnDraw();
+                        }, 500);
+                    }else{
+                        layer.close(loading);
+                        layer.msg(resp.msg,{icon:5});
+                    }
+                }).fail(function () {
+                    layer.close(loading);
+                    layer.msg("保存失败",{icon:5});
+                });
+            },
+            btn2:function(index){
+                layer.closeAll();
+            },
+        });
+    });
+
+    //删除
+    $(document).on('click', '.delete', function(){
+        var id = $(this).data("id");
+        layer.confirm("确定删除？", function () {
+            var loading = layer.load(1, {
+                shade: [0.3,'#000']
+            });
+
+            $.post('/taobaotoken/del', {id: id}, function(res){
+                layer.close(loading);
+                if (res.code == 200) {
+                    layer.msg("操作成功",{icon:1});
+                    $("#list").dataTable().fnDraw(false);
+                }else{
+                    layer.msg(res.msg,{icon:5});
+                }
+            }).fail(function(){
+                layer.msg("网络错误",{icon:5});
+            });
+        })
+    });
+
 });
 
 

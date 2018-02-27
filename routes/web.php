@@ -73,6 +73,10 @@ Route::group(['middleware' => ['auth'], 'as'=>"admin."], function(){
     Route::get('/taobaotoken/list', ['as'=>'taobaotoken.list', 'uses'=>"TaobaoTokenController@getList"]);
     //刷新授权
     Route::post('/taobaotoken/refresh', ['as'=>'taobaotoken.refresh', 'uses'=>"TaobaoTokenController@refreshToken"]);
+    //保存授权
+    Route::post('/taobaotoken/save', ['as'=>'taobaotoken.save', 'uses'=>"TaobaoTokenController@save"]);
+    //删除
+    Route::post('/taobaotoken/del', ['as'=>'taobaotoken.del', 'uses'=>"TaobaoTokenController@del"]);
 
     /*
      * ========================
