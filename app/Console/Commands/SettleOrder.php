@@ -114,5 +114,5 @@ class SettleOrder extends Command
         $this->info("预计总共返利{$predictTotalMoney}, 实际返利{$totalMoney}");
 
     }
-    
+
 }

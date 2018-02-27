@@ -26,6 +26,11 @@ class Kernel extends ConsoleKernel
     {
         //每10分钟刷新淘宝token
         $schedule->command('refresh_taobao_token')->everyTenMinutes();
+        //每1分钟增量同步订单
+        $schedule->command('sync_order', ['--increase'=> 1])->everyMinute();
+        //每5分钟更新未结算订单
+        $schedule->command('sync_order', ['--update'=> 1])->everyFiveMinutes();
+
     }
 
     /**

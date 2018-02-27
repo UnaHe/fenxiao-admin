@@ -44,8 +44,8 @@ class CreatePid extends Command
         $total = $this->option('num');
 
         $tbToken = null;
-        $memberId = 123195020;
-        $siteId = 42138501;
+        $memberId = config('taobao.alimama_member_id');
+        $siteId = config('taobao.alimama_site_id');
         $createUrl = "http://pub.alimama.com/common/adzone/selfAdzoneCreate.json";
 
         $cookie = (new SyncOrder())->getCookie();
@@ -63,6 +63,16 @@ class CreatePid extends Command
                 'cookie' => $cookie,
             ]
         ]));
+
+        $alimamaUserInfo = $client->get('http://pub.alimama.com/common/getUnionPubContextInfo.json')->getBody()->getContents();
+        $alimamaUserInfo = json_decode($alimamaUserInfo, true);
+        if(json_last_error()) {
+            throw new \Exception("cookie无效");
+        }
+
+        if($alimamaUserInfo['data']['memberid'] != $memberId){
+            throw new \Exception("阿里妈妈memberid和cookie不一致");
+        }
 
         for ($n = 0; $n<$total; $n++){
             $zoneName = "tk".uniqid().time();

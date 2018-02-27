@@ -286,10 +286,14 @@ class SyncOrder extends Command
      * @return bool
      */
     public function getCookie(){
-        $result = (new \GuzzleHttp\Client())->get('http://47.92.94.162:8886/api?Key=1111&getname=cookie&skey=1111')->getBody()->getContents();
+        $result = (new \GuzzleHttp\Client())->get(config('taobao.alimama_cookie_url'))->getBody()->getContents();
         $result = json_decode($result, true);
         if(json_last_error()){
+            throw new \Exception("获取阿里妈妈cookie失败");
             return false;
+        }
+        if(isset($result['errmsg']) && $result['errmsg']){
+            throw new \Exception($result['errmsg']);
         }
         return $result['data'];
     }

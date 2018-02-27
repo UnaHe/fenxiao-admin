@@ -41,7 +41,7 @@ class SyncPid extends Command
      */
     public function handle()
     {
-        $siteId = 42138501;
+        $siteId = config('taobao.alimama_site_id');
         $pageSize = 1000;
         $getUrl = "http://pub.alimama.com/common/adzone/adzoneManage.json?tab=3&perPageSize={$pageSize}&gcid=8";
 
@@ -87,5 +87,5 @@ class SyncPid extends Command
         }while(true);
 
     }
-    
+
 }
