@@ -170,7 +170,7 @@
                     <tr>
                         <td><%=user.mobile%></td>
                         <td><%=user.grade_str%></td>
-                        <td><%=user.user_rate%>%</td>
+                        <td><%=user.user_rate*100%>%</td>
                         <td>¥<%=user.predict_money%></td>
                         <td>¥<%=user.predict_income%></td>
                         <td><%=user.order_user_id==user.user_id ? '订单用户' :''%></td>
