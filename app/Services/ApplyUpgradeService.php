@@ -168,4 +168,13 @@ class ApplyUpgradeService
         return true;
     }
 
+    /**
+     * 未处理数量
+     * @return mixed
+     */
+    public function unDealNum(){
+        return ApplyUpgrade::where('status', ApplyUpgrade::STATUS_APPLY)->count();
+    }
+
+
 }

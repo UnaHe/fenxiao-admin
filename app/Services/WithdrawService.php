@@ -138,4 +138,10 @@ class WithdrawService
         return true;
     }
 
+    /**
+     * 未处理提现数量
+     */
+    public function unDealNum(){
+        return Withdraw::where('status', Withdraw::STATUS_APPLY)->count();
+    }
 }

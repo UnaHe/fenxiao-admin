@@ -51,4 +51,23 @@ class PidService
         return $data;
     }
 
+    /**
+     * PID统计
+     */
+    public function pidStatistics(){
+        //未使用PID数量
+        $notUsed = SystemPids::where("user_id", 0)->count();
+        //PID总数
+        $total = SystemPids::count();
+
+        $data = [
+            'total' => $total,
+            'not_used' => $notUsed,
+            'used' => $total-$notUsed,
+        ];
+
+        return $data;
+    }
+
+
 }

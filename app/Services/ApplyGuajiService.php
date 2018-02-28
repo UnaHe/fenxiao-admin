@@ -145,4 +145,12 @@ class ApplyGuajiService
         return true;
     }
 
+    /**
+     * 未处理数量
+     * @return mixed
+     */
+    public function unDealNum(){
+        return ApplyGuaji::where('status', ApplyGuaji::STATUS_APPLY)->count();
+    }
+
 }

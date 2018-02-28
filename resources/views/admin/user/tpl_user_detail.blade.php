@@ -1,4 +1,4 @@
-<form id="edit-form">
+<form id="edit-form"  style="width: 600px;">
     <input type="hidden" name="id" value="<%=user.id%>">
     <table class="table table-striped">
         <tbody>
