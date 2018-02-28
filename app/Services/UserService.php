@@ -203,6 +203,7 @@ class UserService
             $where = [
                 ['left_val', "<=", $user['left_val']],
                 ['right_val', ">=", $user['right_val']],
+                ['user_id', "!=", 0],
             ];
         }else{
             $where = [
