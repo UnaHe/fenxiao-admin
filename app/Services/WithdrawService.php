@@ -102,12 +102,17 @@ class WithdrawService
      * @param $id
      */
     public function confirm($id){
+        $withdraw = Withdraw::find($id);
+
         if(Withdraw::where([
             ['id', '=', $id],
             ['status', '=', Withdraw::STATUS_APPLY]
         ])->update(['status'=> Withdraw::STATUS_SUCCESS, 'deal_time'=> Carbon::now()])){
+
+            (new MessageService())->sendMessageToUser($withdraw['user_id'], "您的提现申请已通过！");
             return true;
         }
+
         return false;
     }
 
@@ -135,6 +140,9 @@ class WithdrawService
             DB::rollBack();
             return false;
         }
+
+        (new MessageService())->sendMessageToUser($withdraw['user_id'], "您的提现申请已被拒绝！");
+
         return true;
     }
 
