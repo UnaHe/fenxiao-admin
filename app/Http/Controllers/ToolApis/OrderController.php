@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function statistics(Request $request)
     {
         $memberId = $request->get('member_id');
-        $orderStatistics = (new AlimamaOrderService())->orderStatistics();
+        $orderStatistics = (new AlimamaOrderService())->orderStatistics($memberId);
         return $this->ajaxSuccess($orderStatistics);
     }
 

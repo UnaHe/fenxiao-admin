@@ -159,27 +159,32 @@ class AlimamaOrderService
     /**
      * 订单统计
      */
-    public function orderStatistics(){
+    public function orderStatistics($memberId=null){
+        $where = [];
+        if($memberId){
+            $where[] = ['member_id', "=", $memberId];
+        }
+
         $data = [];
         //今日付款订单
         $data['today_pay'] = AlimamaOrder::where([
             ['create_time', ">=", Carbon::now()->startOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_PAYED]
-        ])->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
 
 
         //今日结算订单
         $data['today_settle'] = AlimamaOrder::where([
             ['settle_time', ">=", Carbon::now()->startOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_SETTLE]
-        ])->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
 
         //昨日付款订单
         $data['yesterday_pay'] = AlimamaOrder::where([
             ['create_time', ">=", Carbon::yesterday()->startOfDay()],
             ['create_time', "<=", Carbon::yesterday()->endOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_PAYED]
-        ])->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
 
 
         //昨日结算订单
@@ -187,33 +192,33 @@ class AlimamaOrderService
             ['settle_time', ">=", Carbon::yesterday()->startOfDay()],
             ['settle_time', "<=", Carbon::yesterday()->endOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_SETTLE]
-        ])->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
 
         //本月付款订单
         $data['cur_month_pay'] = AlimamaOrder::where([
             ['create_time', ">=", Carbon::now()->startOfMonth()->startOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_PAYED]
-        ])->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
 
         //本月结算订单
         $data['cur_month_settle'] = AlimamaOrder::where([
             ['settle_time', ">=", Carbon::now()->startOfMonth()->startOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_SETTLE]
-        ])->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
 
         //上月付款订单
         $data['last_month_pay'] = AlimamaOrder::where([
             ['create_time', ">=", Carbon::now()->subMonth()->startOfMonth()->startOfDay()],
             ['create_time', "<=", Carbon::now()->subMonth()->endOfMonth()->endOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_PAYED]
-        ])->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(pay_money),0) as money")->first()->toArray();
 
         //上月结算订单
         $data['last_month_settle'] = AlimamaOrder::where([
             ['settle_time', ">=", Carbon::now()->subMonth()->startOfMonth()->startOfDay()],
             ['settle_time', "<=", Carbon::now()->subMonth()->endOfMonth()->endOfDay()],
             ['order_state', "=", AlimamaOrder::ORDERSTATE_SETTLE]
-        ])->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
+        ])->where($where)->selectRaw("count(1) as num, ifnull(sum(settle_money),0) as money")->first()->toArray();
 
         //上次同步时间
         $data['last_sync_time'] = AlimamaOrder::max("sync_time");
