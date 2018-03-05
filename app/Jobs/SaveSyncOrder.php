@@ -96,7 +96,7 @@ class SaveSyncOrder implements ShouldQueue
                 'share_rate' => $shareRate,
                 'pay_money' => $payMoney,
                 'settle_money' => $settleMoney,
-                'settle_time' => $settleTime,
+                'settle_time' => $settleTime ?: null,
                 'predict_money' => $predictMoney,
                 'predict_income' => $predictIncome,
                 'commission_rate' => $commissionRate,
