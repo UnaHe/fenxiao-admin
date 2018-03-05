@@ -142,7 +142,7 @@ class SaveSyncOrder implements ShouldQueue
                     event(new CalculateOrderEvent($orderModel));
                 }
             }catch (\Exception $e){
-                Log::error($orderNo." 同步失败");
+                Log::error($orderNo." 同步失败".$e->getMessage());
             }
         }
     }
