@@ -60,7 +60,12 @@ $(function () {
                 return "<div class='banner_img_wrap'><a href='"+data+"' target='_blank' title='点击查看大图'><img src='"+data+"' class='banner_img'/></a></div>"
           }
         },
-        {'data': 'click_url'},
+        {
+          "data": "click_url",
+          "render": function(data, type, full) {
+              return "<div class='click_url'>"+data+"</div>"
+          }
+        },
         {'data': 'position'},
         {
           "data": "id",
@@ -247,6 +252,11 @@ $(function () {
     .banner_img{
         max-width: 500px;
         max-height:300px;
+    }
+
+    .click_url{
+        width: 200px;
+        word-wrap: break-word;
     }
 </style>
 
