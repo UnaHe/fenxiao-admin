@@ -171,6 +171,7 @@
                 <li class="wechat_domain"><a href="{{route("admin.wechat_domain")}}">域名管理</a></li>
                 <li class="grade"><a href="{{route("admin.grade")}}">等级管理</a></li>
                 <li class="failed_jobs"><a href="{{route("admin.failed_jobs")}}">失败任务</a></li>
+                <li class="updatepwd"><a href="{{route("admin.system.updatepwd")}}">修改密码</a></li>
               </ul>
             </li>
 

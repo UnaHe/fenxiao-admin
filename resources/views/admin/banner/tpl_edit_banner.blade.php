@@ -14,6 +14,7 @@
 		<div class="form-group">
 			<label for="title">链接网址</label>
 			<input type="text" class="form-control" name="click_url" placeholder="请输入链接网址" value="<%=click_url%>">
+			<div style="color: #666;">支持以下变量：用户PID{pid}，用户ID{user_id}</div>
 		</div>
 
 		<div class="form-group">

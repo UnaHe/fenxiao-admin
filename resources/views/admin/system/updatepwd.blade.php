@@ -27,7 +27,7 @@
 
                       <div class="form-group">
                         <label for="oldpass">账号</label>
-                        <input type="text" class="form-control" id="account" value="{{Auth::guard("admin")->user()->email}}">
+                        <input type="text" class="form-control" id="account" value="{{$user->mobile}}">
                       </div>
 
                       <div class="form-group">
@@ -69,23 +69,23 @@
           var repass = $("#repass").val();
 
           if (account == '') {
-            $.simplyToast('请输入账号!', 'danger');
-            return;
+              layer.alert('请输入账号!', {icon:5});
+              return;
           }
 
           if (oldpass == '') {
-            $.simplyToast('请输入密码!', 'danger');
-            return;
+              layer.alert('请输入密码!', {icon:5});
+              return;
           }
 
           if (newpass != '' && newpass.length<6) {
-            $.simplyToast('新密码长度太短!', 'danger');
-            return;
+              layer.alert('新密码长度太短!', {icon:5});
+              return;
           }
 
           if (newpass != '' && newpass != repass) {
-            $.simplyToast('确认密码错误!', 'danger');
-            return;
+              layer.alert('确认密码错误!', {icon:5});
+              return;
           }
 
           var data = {
@@ -96,13 +96,13 @@
 
           $.post("{{route('admin.system.updatepwd')}}", data, function(data){
             if (data.code == 200) {
-                $.simplyToast('保存成功!', 'success');
+                layer.alert('保存成功!', {icon:1});
                 $("input[type=password]").val("");
 
             }else if(data.code == 301) {
-                $.simplyToast('原密码错误!', 'danger');
+                layer.alert('原密码错误!', {icon:5});
             }else{
-                $.simplyToast('操作失败!', 'danger');
+                layer.alert('操作失败!', {icon:5});
             }
 
           });            

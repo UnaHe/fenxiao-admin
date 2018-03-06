@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SystemController extends Controller
 {
     public function updatepwd(Request $request){
-        return view("admin.system.updatepwd");
+        $user = $request->user();
+
+        return view("admin.system.updatepwd", [
+            'user' => $user
+        ]);
     }
 
     public function updatepwdSave(Request $request){
@@ -18,19 +24,15 @@ class SystemController extends Controller
         $oldpass = $request->input("oldpass");
         $newpass = $request->input("newpass");
 
-        $guard = Auth::guard("admin");
-        $user = $guard->user();
+        $user = Admin::find($request->user()->id);
 
-        $provider = $guard->getProvider();
-
-        //验证密码
-        if (!$provider->validateCredentials($user, ['password'=> $oldpass])) {
+        if(!Hash::check($oldpass, $user['password'])){
             return $this->ajaxError("原密码错误", 301);
         }
 
-        $user->email = $account;
+        $user->mobile = $account;
         if($newpass){
-            $user->password = crypt($newpass);
+            $user->password = bcrypt($newpass);
         }
 
         if(!$user->save()){

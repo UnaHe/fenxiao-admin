@@ -63,7 +63,10 @@ $(function () {
         {
           "data": "click_url",
           "render": function(data, type, full) {
-              return "<div class='click_url'>"+data+"</div>"
+              if(data){
+                  return "<div class='click_url'>"+data+"</div>"
+              }
+              return "";
           }
         },
         {'data': 'position'},
