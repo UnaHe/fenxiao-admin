@@ -16,7 +16,7 @@ trait AjaxResponse
      * @param array $data
      * @return static
      */
-    protected function ajaxSuccess($data=array()){
+    protected function ajaxSuccess($data=null){
         $ret = array(
             'code'=>200,
             'msg'=>'success',
@@ -32,7 +32,7 @@ trait AjaxResponse
      * @param array $data
      * @return static
      */
-    protected function ajaxError($msg='error', $code=300, $data= array()){
+    protected function ajaxError($msg='error', $code=300, $data= null){
         $ret = array(
             'code'=>$code,
             'msg'=>$msg,

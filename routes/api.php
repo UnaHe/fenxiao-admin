@@ -8,4 +8,11 @@ Route::group(['namespace'=> 'App\Http\Controllers\ToolApis', 'prefix'=>"toolApi"
     Route::get('/order/syncIncreaseTime', 'OrderController@syncIncreaseTime');
     //未结算订单时间点
     Route::get('/order/notSettleTime', 'OrderController@notSettleTime');
+
+
+    //获取淘宝登录授权信息
+    Route::get('/taobaotoken/getToken', 'TaobaoTokenController@getToken');
+    //保存淘宝登录授权信息
+    Route::post('/taobaotoken/save', 'TaobaoTokenController@save');
+
 });
