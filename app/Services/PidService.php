@@ -54,11 +54,16 @@ class PidService
     /**
      * PID统计
      */
-    public function pidStatistics(){
+    public function pidStatistics($memberId=null){
+        $where = [];
+        if($memberId){
+            $where[] = ['member_id', "=", $memberId];
+        }
+
         //未使用PID数量
-        $notUsed = SystemPids::where("user_id", 0)->count();
+        $notUsed = SystemPids::where("user_id", 0)->where($where)->count();
         //PID总数
-        $total = SystemPids::count();
+        $total = SystemPids::where($where)->count();
 
         $data = [
             'total' => $total,

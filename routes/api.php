@@ -15,4 +15,10 @@ Route::group(['namespace'=> 'App\Http\Controllers\ToolApis', 'prefix'=>"toolApi"
     //保存淘宝登录授权信息
     Route::post('/taobaotoken/save', 'TaobaoTokenController@save');
 
+    //获取PID信息
+    Route::get('/pid/getInfo', 'PidController@getInfo');
+    //创建PID
+    Route::post('/pid/save', 'PidController@save');
+
+
 });
