@@ -165,8 +165,8 @@
             <li class="treeview">
               <a href="#"><i class='fa fa-cog'></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="pid"><a href="{{route("admin.pid")}}"><i class='fa fa-bars'></i> <span>PID管理</span></a></li>
-                <li class="taobaotoken"><a href="{{route("admin.taobaotoken")}}"><i class='fa fa-bars'></i> <span>系统授权管理</span></a></li>
+                <li class="pid"><a href="{{route("admin.pid")}}">PID管理</a></li>
+                <li class="taobaotoken"><a href="{{route("admin.taobaotoken")}}">系统授权管理</a></li>
                 <li class="system_config"><a href="{{route("admin.system_config")}}">系统配置</a></li>
                 <li class="wechat_domain"><a href="{{route("admin.wechat_domain")}}">域名管理</a></li>
                 <li class="grade"><a href="{{route("admin.grade")}}">等级管理</a></li>
