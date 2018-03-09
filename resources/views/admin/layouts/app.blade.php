@@ -153,9 +153,7 @@
             <li class="dashboard"><a href="{{route("admin.dashboard")}}"><i class='fa fa-dashboard'></i> <span>首页</span></a></li>
             <li class="member"><a href="{{route("admin.user")}}"><i class='fa fa-users'></i> <span>用户管理</span></a></li>
             <li class="order"><a href="{{route("admin.orderlist")}}"><i class='fa fa-bars'></i> <span>订单管理</span></a></li>
-            <li class="pid"><a href="{{route("admin.pid")}}"><i class='fa fa-bars'></i> <span>PID管理</span></a></li>
             <li class="feedback"><a href="{{route("admin.feedback")}}"><i class='fa fa-bars'></i> <span>意见反馈</span></a></li>
-            <li class="taobaotoken"><a href="{{route("admin.taobaotoken")}}"><i class='fa fa-bars'></i> <span>系统授权管理</span></a></li>
             <li class="banner"><a href="{{route("admin.banner")}}"><i class='fa fa-bars'></i><span>Banner管理</span></a></li>
             <li class="user_bill"><a href="{{route("admin.user_bill")}}"><i class='fa fa-bars'></i> <span>账单管理</span></a></li>
             <li class="notice"><a href="{{route("admin.notice")}}"><i class='fa fa-bars'></i> <span>公告管理</span></a></li>
@@ -167,6 +165,8 @@
             <li class="treeview">
               <a href="#"><i class='fa fa-cog'></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
+                <li class="pid"><a href="{{route("admin.pid")}}"><i class='fa fa-bars'></i> <span>PID管理</span></a></li>
+                <li class="taobaotoken"><a href="{{route("admin.taobaotoken")}}"><i class='fa fa-bars'></i> <span>系统授权管理</span></a></li>
                 <li class="system_config"><a href="{{route("admin.system_config")}}">系统配置</a></li>
                 <li class="wechat_domain"><a href="{{route("admin.wechat_domain")}}">域名管理</a></li>
                 <li class="grade"><a href="{{route("admin.grade")}}">等级管理</a></li>
