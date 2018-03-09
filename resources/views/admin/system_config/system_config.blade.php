@@ -69,7 +69,7 @@
                         <label class="col-sm-2 control-label">游客账号</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="visitor_account" value="<?=isset($configs['visitor_account']) ? $configs['visitor_account']['value']: ""?>">
-                            <div class="form-tips">未登录用户使用相关功能默认使用的账号</div>
+                            <div class="form-tips">未登录用户使用相关功能默认使用的账号，请填写用户id</div>
                         </div>
                     </div>
 
