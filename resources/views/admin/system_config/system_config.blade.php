@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" style="height: 1000px;">
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">新浪短域名</label>
                         <div class="col-md-10">
                             <select class="form-control" name="sina_short_url">
@@ -56,6 +56,15 @@
                             <div class="form-tips">选择是否开启新浪短域名服务</div>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">扣款服务费比例</label>
+                        <div class="col-md-10">
+                            <input type="number" class="form-control" name="service_money_rate" value="<?=isset($configs['service_money_rate']) ? $configs['service_money_rate']['value']: 0?>">
+                            <div class="form-tips">结算订单时扣款服务费比例, 格式为0到1之间的小数</div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div><!-- /.box-body -->

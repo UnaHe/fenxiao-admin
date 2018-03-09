@@ -46,8 +46,9 @@ class SysConfigService
         $configs = $request->post();
         DB::beginTransaction();
         try{
+            $tableName = (new SysConfig)->getTable();
             foreach ($configs as $key=>$value){
-                SysConfig::where("key", $key)->update(['value'=> $value]);
+                DB::insert("replace into {$tableName}(`name`, `key`, `value`) values('{$key}', '{$key}', '{$value}')");
             }
             DB::commit();
         }catch (\Exception $e){

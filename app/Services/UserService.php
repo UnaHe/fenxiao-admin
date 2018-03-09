@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Request;
 
 class UserService
 {
+    //系统服务费比例
+    private $serviceMoneyRate=null;
+
     /**
      * 用户列表
      * @param \Illuminate\Http\Request $request
@@ -253,8 +256,14 @@ class UserService
      * @param $rate
      */
     public function getUserMoney($money, $rate){
+        if($this->serviceMoneyRate === null){
+            $this->serviceMoneyRate = (new SysConfigService())->get('service_money_rate');
+            if($this->serviceMoneyRate < 0 || $this->serviceMoneyRate>1){
+                $this->serviceMoneyRate = 0;
+            }
+        }
         //系统扣款比例
-        $systemRate = 0.16;
+        $systemRate = $this->serviceMoneyRate;
         //预估收入 = (订单预估 - 系统扣减手续费) * 用户分成比例
         return bcmul(bcmul($money, (1 - $systemRate), 5), $rate, 5);
     }
